@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".view.main.MainActivity"
+        tools:showIn="@layout/activity_main">
+
+    <data>
+
+        <variable
+            name="MainViewModel"
+            type="com.sandboxol.blockymods.view.main.MainViewModel"/>
+    </data>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        bind:onCheckCommand="@{MainViewModel.onCheckCommand}"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#999999"
+            android:button="@null"
+            android:gravity="center"
+            android:text="INDEX"/>
+
+        <RadioButton
+            android:id="@+id/rb_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#dddddd"
+            android:button="@null"
+            android:gravity="center"
+            android:text="GAME"/>
+
+        <RadioButton
+            android:id="@+id/rb_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#999999"
+            android:button="@null"
+            android:gravity="center"
+            android:text="CHAT"/>
+
+        <RadioButton
+            android:id="@+id/rb_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#dddddd"
+            android:button="@null"
+            android:gravity="center"
+            android:text="ME"/>
+
+    </RadioGroup>
+
+
+</layout>

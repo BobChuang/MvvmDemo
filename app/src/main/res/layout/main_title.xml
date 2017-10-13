@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="MainViewModel"
+            type="com.sandboxol.blockymods.view.main.MainViewModel"/>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        bind:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tbTemplateBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            bind:contentInsetEnd="0dp"
+            bind:contentInsetLeft="0dp"
+            bind:contentInsetRight="0dp"
+            bind:contentInsetStart="0dp"
+            bind:navigationIcon="@null"
+            bind:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:paddingRight="8dp"
+                android:visibility="@{MainViewModel.isShowLeftButton ? View.VISIBLE : View.INVISIBLE}"
+                android:src="@drawable/btn_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{MainViewModel.title}"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:background="@null"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="OK"
+                android:textSize="15sp"
+                android:visibility="@{MainViewModel.isShowRightButton ? View.VISIBLE : View.INVISIBLE}"/>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+</layout>
