@@ -1,4 +1,4 @@
-package com.bob.ezil.view.main.chat;
+package com.bob.ezil.view.fragment.home;
 
 import android.databinding.ViewDataBinding;
 
@@ -7,13 +7,12 @@ import com.bob.common.base.app.BaseFragment;
 import com.bob.common.base.viewmodel.ViewModel;
 
 /**
- * Created by Jimmy on 2017/10/13 0013.
+ * Created by Bob on 2021/06/30.
  */
-public class ChatFragment extends BaseFragment {
-
+public class HomeFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_chat;
+        return R.layout.fragment_index;
     }
 
     @Override
@@ -25,5 +24,4 @@ public class ChatFragment extends BaseFragment {
     protected void bindViewModel(ViewDataBinding binding, ViewModel viewModel) {
 
     }
-
 }

@@ -8,7 +8,7 @@
 
         <variable
             name="MainViewModel"
-            type="com.bob.ezil.view.main.MainViewModel"/>
+            type="com.bob.ezil.view.activity.MainViewModel"/>
     </data>
 
     <RelativeLayout

@@ -1,4 +1,4 @@
-package com.bob.ezil.view.main;
+package com.bob.ezil.view.activity;
 
 import android.support.v4.app.FragmentTransaction;
 
@@ -8,7 +8,7 @@ import com.bob.common.base.app.BaseActivity;
 import com.bob.common.base.app.BaseFragment;
 
 /**
- * Created by Bob on 2017/10/12.
+ * Created by Bob on 2021/06/30.
  */
 public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> {
 

@@ -1,4 +1,4 @@
-package com.bob.ezil.view.main.game;
+package com.bob.ezil.view.fragment.game;
 
 import android.databinding.ViewDataBinding;
 
@@ -7,7 +7,7 @@ import com.bob.common.base.app.BaseFragment;
 import com.bob.common.base.viewmodel.ViewModel;
 
 /**
- * Created by Jimmy on 2017/10/13 0013.
+ * Created by Bob on 2021/06/30.
  */
 public class GameFragment extends BaseFragment {
     @Override

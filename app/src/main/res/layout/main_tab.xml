@@ -2,14 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:bind="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".view.main.MainActivity"
+        tools:context=".view.activity.MainActivity"
         tools:showIn="@layout/activity_main">
 
     <data>
 
         <variable
             name="MainViewModel"
-            type="com.bob.ezil.view.main.MainViewModel"/>
+            type="com.bob.ezil.view.activity.MainViewModel"/>
     </data>
 
     <RadioGroup

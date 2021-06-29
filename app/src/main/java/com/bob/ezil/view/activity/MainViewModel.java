@@ -1,19 +1,19 @@
-package com.bob.ezil.view.main;
+package com.bob.ezil.view.activity;
 
 import android.databinding.ObservableField;
 
 import com.bob.ezil.R;
-import com.bob.ezil.view.main.chat.ChatFragment;
-import com.bob.ezil.view.main.game.GameFragment;
-import com.bob.ezil.view.main.index.IndexFragment;
-import com.bob.ezil.view.main.me.MeFragment;
+import com.bob.ezil.view.fragment.chat.ChatFragment;
+import com.bob.ezil.view.fragment.game.GameFragment;
+import com.bob.ezil.view.fragment.home.HomeFragment;
+import com.bob.ezil.view.fragment.me.MeFragment;
 import com.bob.common.base.app.BaseFragment;
 import com.bob.common.base.viewmodel.ViewModel;
 import com.bob.common.binding.adapter.RadioGroupBindingAdapters;
 import com.bob.common.command.ReplyCommand;
 
 /**
- * Created by Jimmy on 2017/10/13 0013.
+ * Created by Bob on 2021/06/30.
  */
 public class MainViewModel extends ViewModel {
 
@@ -36,7 +36,7 @@ public class MainViewModel extends ViewModel {
                 title.set("INDEX");
                 isShowLeftButton.set(true);
                 isShowRightButton.set(true);
-                replaceFragment(new IndexFragment());
+                replaceFragment(new HomeFragment());
                 break;
             case R.id.rb_2:
                 title.set("GAME");
