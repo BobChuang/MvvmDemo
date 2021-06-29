@@ -4,7 +4,7 @@ android {
     compileSdkVersion android_compile_version
     buildToolsVersion android_version
     defaultConfig {
-        applicationId "com.sandboxol.blockymods"
+        applicationId "com.bob.ezil"
         minSdkVersion android_min_sdk_version
         targetSdkVersion android_target_sdk_version
         versionCode 1

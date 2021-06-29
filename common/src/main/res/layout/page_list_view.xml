@@ -6,7 +6,7 @@
 
         <variable
             name="ViewModel"
-            type="com.sandboxol.common.widget.rv.pagerv.PageListViewModel"/>
+            type="com.bob.common.widget.rv.pagerv.PageListViewModel"/>
 
         <import type="android.view.View"/>
     </data>
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.sandboxol.common.widget.PageLoadingView
+        <com.bob.common.widget.PageLoadingView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             bind:errorText="@{ViewModel.viewStyle.emptyText}"

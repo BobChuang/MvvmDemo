@@ -6,7 +6,7 @@
 
         <variable
             name="MainViewModel"
-            type="com.sandboxol.blockymods.view.main.MainViewModel"/>
+            type="com.bob.ezil.view.main.MainViewModel"/>
 
     </data>
 
