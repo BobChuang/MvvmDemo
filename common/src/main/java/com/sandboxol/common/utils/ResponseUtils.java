@@ -19,7 +19,7 @@ public class ResponseUtils {
     public static <D> HttpResponse<D> create(int code, String msg, D data) {
         HttpResponse<D> response = new HttpResponse<>();
         response.setCode(code);
-        response.setMsg(msg);
+        response.setMessage(msg);
         response.setData(data);
         return response;
     }

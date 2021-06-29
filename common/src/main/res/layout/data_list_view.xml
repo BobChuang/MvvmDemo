@@ -5,10 +5,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.sandboxol.common.binding.viewmodel.DataListViewModel"/>
-
-        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers"/>
+            name="ViewModel"
+            type="com.sandboxol.common.widget.rv.datarv.DataListViewModel"/>
 
         <import type="android.view.View"/>
     </data>
@@ -17,28 +15,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.sandboxol.common.widget.PageLoadingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:errorText="@{ViewModel.viewStyle.emptyText}"
+            bind:isVisible="@{ViewModel.itemViewModel.size() > 0 ? false : true}"
+            bind:isLoading="@{ViewModel.viewStyle.isRefreshing}"
+            bind:isSuccess="@{ViewModel.itemViewModel.size() > 0}"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            bind:onRefreshCommand="@{viewModel.onRefreshCommand}"
-            bind:setRefreshing="@{viewModel.viewStyle.isRefreshing}">
+            bind:onRefreshCommand="@{ViewModel.onRefreshCommand}"
+            bind:setRefreshing="@{ViewModel.viewStyle.isRefreshing}">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvData"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                bind:itemView="@{viewModel.itemView}"
-                bind:items="@{viewModel.itemViewModel}"/>
+                bind:itemBinding="@{ViewModel.itemBinding}"
+                bind:items="@{ViewModel.itemViewModel}"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@{viewModel.viewStyle.emptyText}"
-            android:visibility="@{viewModel.viewStyle.isShowEmptyView ? View.VISIBLE : View.GONE}"/>
-
     </RelativeLayout>
 
 </layout>

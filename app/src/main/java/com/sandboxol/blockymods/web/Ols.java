@@ -39,10 +39,10 @@ public class Ols {
                 .subscribe(new HttpSubscriber<>(listener));
     }
 
-    public static void getItemData(OnResponseListener<HttpResponse<List<ItemData>>> listener) {
-        api.getItemData().subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpListSubscriber<>(listener));
-    }
+//    public static void getItemData(OnResponseListener<HttpResponse<List<ItemData>>> listener) {
+//        api.getItemData().subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new HttpListSubscriber<>(listener));
+//    }
 
 }

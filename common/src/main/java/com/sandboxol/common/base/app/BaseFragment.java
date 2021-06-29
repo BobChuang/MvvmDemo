@@ -5,54 +5,86 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sandboxol.common.base.viewmodel.ViewModel;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 /**
  * Created by Jimmy on 2016/7/31.
  */
-public abstract class BaseFragment<D extends ViewDataBinding> extends RxFragment {
+public abstract class BaseFragment<VM extends ViewModel, D extends ViewDataBinding> extends RxFragment {
 
     protected Activity activity;
     protected Context context;
+    protected VM viewModel;
     protected D binding;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         context = getContext();
-        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
-        initView();
-        initViewModel(this);
+        activity = getActivity();
+        bindView(inflater, container);
         return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        activity = getActivity();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        bindView();
+        bindData();
+        if (viewModel != null) {
+            viewModel.onResume();
+        }
     }
 
-    protected abstract int getLayoutId();
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (viewModel != null) {
+            viewModel.onPause();
+        }
+    }
 
-    protected void initView() {
+    protected abstract @LayoutRes
+    int getLayoutId();
+
+    protected void bindView(LayoutInflater inflater, ViewGroup container) {
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
+            viewModel = getViewModel();
+            bindViewModel(binding, viewModel);
+        }
+    }
+
+    protected abstract VM getViewModel();
+
+    protected abstract void bindViewModel(D binding, VM viewModel);
+
+    protected void bindData() {
 
     }
 
-    protected void bindView() {
-
+    protected boolean isClearViewModel() {
+        return true;
     }
 
-    protected abstract void initViewModel(BaseFragment fragment);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (isClearViewModel() && viewModel != null) {
+            viewModel.onDestroy();
+            viewModel = null;
+        }
+    }
 
 }

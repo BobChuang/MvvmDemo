@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion android_compile_version
@@ -7,8 +6,16 @@ android {
     defaultConfig {
         minSdkVersion android_min_sdk_version
         targetSdkVersion android_target_sdk_version
-        versionCode 1
+
+        ext.buildNumber = System.getenv("BUILD_NUMBER") as Integer ?: 1
+        if (project.hasProperty("VERSION_CODE")) {
+            ext.buildNumber = VERSION_CODE as Integer
+        }
+        versionCode buildNumber
+
         versionName "1.0"
+
+//        buildConfigField "String", "BASE_URL", "\"${baseUrl}\""
     }
 
     dataBinding {
@@ -20,28 +27,53 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            minifyEnabled false
+        }
     }
 
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:appcompat-v7:${appcompat_library_version}"
-    compile "com.android.support:design:${support_library_version}"
-    compile "com.android.support:support-v4:${support_library_version}"
-    compile 'io.reactivex:rxjava:x.y.z'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'com.trello:rxlifecycle:0.5.0'
-    compile 'com.trello:rxlifecycle-components:0.5.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    compile 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter:1.1.0'
-    compile 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter-recyclerview:1.1.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/commons-compress-1.15.jar')
+    implementation files('libs/GooglePlay_AppAnalytics_Android_SDK_V4.0.27.jar')
+    implementation files('libs/glide-full-4.9.0.jar')
+    implementation project(path: ':messager')
+    api rootProject.ext.support['appcompat-v7']
+    api rootProject.ext.support['customtabs']
+    api rootProject.ext.support['design']
+    api rootProject.ext.support['support-v4']
+    api rootProject.ext.support['exifinterface']
+
+    api rootProject.ext.dependencies['rxjava']
+    api rootProject.ext.dependencies['rxandroid']
+    api rootProject.ext.dependencies['rxlifecycle']
+    api rootProject.ext.dependencies['rxlifecycle-components']
+    api rootProject.ext.dependencies['retrofit']
+    api rootProject.ext.dependencies['converter-gson']
+    api rootProject.ext.dependencies['adapter-rxjava']
+    api rootProject.ext.dependencies['bindingcollectionadapter']
+    api rootProject.ext.dependencies['bindingcollectionadapter-recyclerview']
+    api rootProject.ext.dependencies['relinker']
+    //load so
+    api rootProject.ext.dependencies['recycleritemdecoration']
+
+    //权限
+
+    api rootProject.ext.dependencies['rxpermissions']
+    //firebase
+    api rootProject.ext.dependencies['firebase-core']
+    api rootProject.ext.dependencies['firebase-messaging']
+    //log工具
+    debugImplementation rootProject.ext.dependencies['logutils']
+    releaseImplementation rootProject.ext.dependencies['logutils-no-op']
+    api 'io.reactivex.rxjava2:rxjava:2.2.10'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
 }
 

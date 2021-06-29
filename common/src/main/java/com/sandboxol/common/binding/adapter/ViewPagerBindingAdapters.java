@@ -43,6 +43,18 @@ public class ViewPagerBindingAdapters {
 
     }
 
+    @BindingAdapter(value = {"position", "anim"}, requireAll = false)
+    public static void setCurrentItem(ViewPager viewPager, int position, boolean anim) {
+        viewPager.setCurrentItem(position, anim);
+    }
+
+    @BindingAdapter({"limit"})
+    public static void setOffscreenPageLimit(ViewPager viewPager, int limit) {
+        if (limit == 0)
+            limit = 1;
+        viewPager.setOffscreenPageLimit(limit);
+    }
+
     public static class ViewPagerDataWrapper {
         public float positionOffset;
         public float position;

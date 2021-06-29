@@ -4,8 +4,12 @@ import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.sandboxol.common.command.ReplyCommand;
 
@@ -54,6 +58,24 @@ public class EditTextBindingAdapters {
                     afterTextChangedCommand.execute(s.toString());
                 }
             }
+        });
+    }
+
+    /**
+     * 软键盘确定键的监听
+     *
+     * @param editText
+     * @param softKeySearchCommand
+     */
+    @BindingAdapter("onSoftKeySearch")
+    public static void onSoftKeySearchCommand(EditText editText, final ReplyCommand softKeySearchCommand) {
+        editText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        editText.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                softKeySearchCommand.execute();
+                return true;
+            }
+            return false;
         });
     }
 

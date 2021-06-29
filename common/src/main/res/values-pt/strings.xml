@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">common</string>
+    <string name="data_loading">Carregando…</string>
+    <string name="no_data">Sem dados</string>
+
+
+    <string name="connect_server_time_out">A Conexão Estendeu o Limite com O Servidor.Por Favor Tente Novamente</string>
+    <string name="connect_server_no_connect">Você  esta sem conexão Com a Internet, verifique</string>
+    <string name="connect_server_un_know">O processo de solicitação deu errado. Verifique o código.</string>
+    <string name="connect_error_code">Código desconhecido:%d,Por Favor, Entre em contato com o administrador</string>
+    <!--2017-11-29 11:45:33-->
+</resources>

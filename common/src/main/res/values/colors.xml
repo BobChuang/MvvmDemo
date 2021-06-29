@@ -5,5 +5,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="dialog_shadow">#65000000</color>
+    <color name="mainBgColor">#E7C99E</color>
+    <color name="itemBgColor">#fae7ca</color>
 
+    <color name="colorPageLoadingFailedText">#666666</color>
+
+    <color name="colorScrollBar">#966e35</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorTextDefault">#000000</color>
 </resources>

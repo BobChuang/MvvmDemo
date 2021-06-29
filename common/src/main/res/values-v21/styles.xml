@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="FullAppTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppWelcomeTheme" parent="FullAppTheme">
+        <item name="android:windowBackground">@mipmap/bg_welcome</item>
+    </style>
+
     <style name="AppTheme" parent="BaseAppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>

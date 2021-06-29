@@ -1,0 +1,98 @@
+ext {
+    //保留之前的版本,避免分包不可用
+    android_compile_version = 28
+    android_version = '28.0.3'
+    android_min_sdk_version = 16
+    android_target_sdk_version = 28
+    appcompat_library_version = '27.1.0'
+    support_library_version = '27.1.0'
+    gms_library_version = '15.0.1'
+    //版本配置
+    android=[
+            android_compile_version   :28,
+            android_version           :'28.0.3',
+            android_min_sdk_version   :16,
+            android_target_sdk_version:28,
+            versionCode               : 850,
+            versionName               : '1.17.17',
+    ]
+    //version配置
+    versions = [
+            "support-version"         : '27.1.0',
+            "junit-version"           : '4.12',
+            'gms_library_version'     :'15.0.1',
+    ]
+    //support配置
+    support = [
+            'support-v4'              : "com.android.support:support-v4:${versions["support-version"]}",
+            'appcompat'               : "com.android.support:support-compat:${versions["support-version"]}",
+            'appcompat-v7'            : "com.android.support:appcompat-v7:${versions["support-version"]}",
+            'recyclerview-v7'         : "com.android.support:recyclerview-v7:${versions["support-version"]}",
+            'support-v13'             : "com.android.support:support-v13:${versions["support-version"]}",
+            'support-fragment'        : "com.android.support:support-fragment:${versions["support-version"]}",
+            'design'                  : "com.android.support:design:${versions["support-version"]}",
+            'animated-vector-drawable': "com.android.support:animated-vector-drawable:${versions["support-version"]}",
+            'junit'                   : "junit:junit:${versions["junit-version"]}",
+            'customtabs'              :"com.android.support:customtabs:${versions["support-version"]}",
+            'exifinterface'           :"com.android.support:exifinterface:${versions["support-version"]}",
+            'multidex'                :'com.android.support:multidex:1.0.1',
+            'constraint-layout'       :'com.android.support.constraint:constraint-layout:1.1.2',
+            'javax.annotation-api'          :'javax.annotation:javax.annotation-api:1.2'
+    ]
+    //依赖第三方配置
+    dependencies = [
+            'gson'                     : 'com.google.code.gson:gson:2.8.1',
+            'aliyun-feedback'          :'com.aliyun.ams:alicloud-android-feedback:3.1.8',
+            'aliyun-utdid'             :'com.aliyun.ams:alicloud-android-utdid:1.1.5.3',
+            'aliyun-ut'                :'com.aliyun.ams:alicloud-android-ut:5.4.0',
+            'aliyun-utils'             :'com.aliyun.ams:alicloud-android-utils:1.1.3',
+            'isoparser'                :'com.googlecode.mp4parser:isoparser:1.0.6',
+            'greendao'                 :'org.greenrobot:greendao:3.2.2',
+            'greendao-generator'       :'org.greenrobot:greendao-generator:3.2.2',
+            'WheelPicker'              : 'cn.qqtheme.framework:WheelPicker:1.5.5',
+            'banner'                   :'com.youth.banner:banner:1.4.10',
+            'rxdownload3'              :'zlc.season:rxdownload3:1.3.4',
+            'rxpermissions'            :'com.github.tbruyelle:rxpermissions:0.10.2',
+            'crashlytics'              :'com.crashlytics.sdk.android:crashlytics:2.7.1@aar',
+            'firebase-core'            :'com.google.firebase:firebase-core:16.0.8',
+            'facebook-login'           :'com.facebook.android:facebook-login:4.27.0',
+            'twitter'                  :'com.twitter.sdk.android:twitter:3.1.1',
+            'firebase-messaging'       :'com.google.firebase:firebase-messaging:17.4.0',
+            'play-services-gcm'        :"com.google.android.gms:play-services-gcm:${versions["gms_library_version"]}",
+            'play-services-auth'       :"com.google.android.gms:play-services-auth:16.0.1",
+            'play-services-base'       :"com.google.android.gms:play-services-base:${versions["gms_library_version"]}",
+            'play-services-plus'       :"com.google.android.gms:play-services-plus:${versions["gms_library_version"]}",
+            'doraemonkit'              :'com.didichuxing.doraemonkit:doraemonkit:1.2.1',
+            'doraemonkit-no-op'        :'com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.0',
+            'umsdk-analytics'          :'com.umeng.umsdk:analytics:8.0.0',
+            'umsdk-common'             :'com.umeng.umsdk:common:2.0.0',
+            'play-services-ads'        :'com.google.android.gms:play-services-ads:17.2.0',
+            'audience-network-sdk'     :'com.facebook.android:audience-network-sdk:5.2.0',
+            'rxjava'                   :'io.reactivex:rxjava:1.3.0',
+            'rxandroid'                :'io.reactivex:rxandroid:1.1.0',
+            'rxlifecycle'              :'com.trello:rxlifecycle:0.5.0',
+            'rxlifecycle-components'   :'com.trello:rxlifecycle-components:0.5.0',
+            'retrofit'                 :'com.squareup.retrofit2:retrofit:2.5.0',
+            'converter-gson'           :'com.squareup.retrofit2:converter-gson:2.5.0',
+            'adapter-rxjava'           :'com.squareup.retrofit2:adapter-rxjava:2.5.0',
+            'bindingcollectionadapter' :'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0',
+            'bindingcollectionadapter-recyclerview':'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0',
+            'glide'                    :'com.github.bumptech.glide:glide:4.9.0',
+            'relinker'                 :'com.getkeepsafe.relinker:relinker:1.3.0',
+            'recycleritemdecoration'   :'com.dinuscxj:recycleritemdecoration:1.0.0',
+            'grpc-okhttp'              :'io.grpc:grpc-okhttp:1.0.0',
+            'grpc-protobuf-lite'       :'io.grpc:grpc-protobuf-lite:1.0.0',
+            'grpc-stub'                :'io.grpc:grpc-stub:1.0.0',
+            'aws-android-sdk-core'     :'com.amazonaws:aws-android-sdk-core:2.15.+',
+            'aws-android-sdk-pinpoint' :'com.amazonaws:aws-android-sdk-pinpoint:2.15.+',
+            'aws-android-sdk-mobile-client':'com.amazonaws:aws-android-sdk-mobile-client:2.15.+',
+            'aws-android-sdk-cognitoauth':'com.amazonaws:aws-android-sdk-cognitoauth:2.15.+',
+            'blurview':'com.github.mmin18:realtimeblurview:1.2.1',
+            'aws-android-sdk-cognitoauth':'com.amazonaws:aws-android-sdk-cognitoauth:2.15.+',
+            'logutils':"com.apkfuns.logutils:library:1.7.5",
+            'logutils-no-op':'com.apkfuns.logutils:logutils-no-op:1.7.5',
+            'google-play-pay-billing'                   :'com.android.billingclient:billing:2.0.3',
+            'blockcanary-debug' : 'com.github.markzhai:blockcanary-android:1.5.0',
+            'blockcanary-release' : 'com.github.markzhai:blockcanary-no-op:1.5.0' //空包
+    ]
+}

@@ -4,9 +4,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
 
@@ -189,8 +192,14 @@ public class Messenger {
 
 
     private void cleanup() {
-        cleanupList(recipientsOfSubclassesAction);
-        cleanupList(recipientsStrictAction);
+        try {
+            Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
+                cleanupList(recipientsOfSubclassesAction);
+                cleanupList(recipientsStrictAction);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -270,57 +279,77 @@ public class Messenger {
     }
 
 
-    public <T> void unregister(Object recipient, Object token) {
+    public void unregister(Object recipient, Object token) {
         unregisterFromLists(recipient, token, null, recipientsStrictAction);
         unregisterFromLists(recipient, token, null, recipientsOfSubclassesAction);
         cleanup();
     }
 
+    public void unregister(Object recipient, Class clazz, Object token) {
+        unregisterFromLists(recipient, token, null, recipientsStrictAction, clazz);
+        unregisterFromLists(recipient, token, null, recipientsOfSubclassesAction, clazz);
+        cleanup();
+    }
 
     private static <T> void sendToList(
             T message,
             Collection<WeakActionAndToken> list,
             Type messageTargetType,
             Object token) {
-        if (list != null) {
-            ArrayList<WeakActionAndToken> listClone = new ArrayList<>();
-            listClone.addAll(list);
+        try {
+            Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
+                if (list != null) {
+                    ArrayList<WeakActionAndToken> listClone = new ArrayList<>();
+                    listClone.addAll(list);
 
-            for (WeakActionAndToken item : listClone) {
-                WeakAction executeAction = item.getAction();
-                if (executeAction != null
-                        && item.getAction().isLive()
-                        && item.getAction().getTarget() != null
-                        && (messageTargetType == null
-                        || item.getAction().getTarget().getClass() == messageTargetType
-                        || classImplements(item.getAction().getTarget().getClass(), messageTargetType))
-                        && ((item.getToken() == null && token == null)
-                        || item.getToken() != null && item.getToken().equals(token))) {
-                    executeAction.execute(message);
+                    for (WeakActionAndToken item : listClone) {
+                        WeakAction executeAction = item.getAction();
+                        if (executeAction != null
+                                && item.getAction().isLive()
+                                && item.getAction().getTarget() != null
+                                && (messageTargetType == null
+                                || item.getAction().getTarget().getClass() == messageTargetType
+                                || classImplements(item.getAction().getTarget().getClass(), messageTargetType))
+                                && ((item.getToken() == null && token == null)
+                                || item.getToken() != null && item.getToken().equals(token))) {
+                            executeAction.execute(message);
+                        }
+                    }
                 }
-            }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     private static void unregisterFromLists(Object recipient, HashMap<Type, List<WeakActionAndToken>> lists) {
-        if (recipient == null
-                || lists == null
-                || lists.size() == 0) {
-            return;
-        }
-        synchronized (lists) {
-            for (Type messageType : lists.keySet()) {
-                for (WeakActionAndToken item : lists.get(messageType)) {
-                    WeakAction weakAction = item.getAction();
+        try {
+            Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
+                if (recipient == null
+                        || lists == null
+                        || lists.size() == 0) {
+                    return;
+                }
+                synchronized (lists) {
+                    for (Type messageType : lists.keySet()) {
+                        for (WeakActionAndToken item : lists.get(messageType)) {
+                            WeakAction weakAction = item.getAction();
 
-                    if (weakAction != null
-                            && recipient == weakAction.getTarget()) {
-                        weakAction.markForDeletion();
+                            if (weakAction != null
+                                    && recipient == weakAction.getTarget()) {
+                                weakAction.markForDeletion();
+                            }
+                        }
                     }
                 }
-            }
+                cleanupList(lists);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        cleanupList(lists);
+
     }
 
     private static <T> void unregisterFromLists(
@@ -385,29 +414,36 @@ public class Messenger {
             Object token,
             Action1<T> action,
             HashMap<Type, List<WeakActionAndToken>> lists, Class<T> tClass) {
-        Type messageType = tClass;
-
-        if (recipient == null
-                || lists == null
-                || lists.size() == 0
-                || !lists.containsKey(messageType)) {
-            return;
-        }
-
-        synchronized (lists) {
-            for (WeakActionAndToken item : lists.get(messageType)) {
-                WeakAction<T> weakActionCasted = (WeakAction<T>) item.getAction();
-
-                if (weakActionCasted != null
-                        && recipient == weakActionCasted.getTarget()
-                        && (action == null
-                        || action == weakActionCasted.getAction1())
-                        && (token == null
-                        || token.equals(item.getToken()))) {
-                    item.getAction().markForDeletion();
+        try {
+            Type messageType = tClass;
+            Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
+                if (recipient == null
+                        || lists == null
+                        || lists.size() == 0
+                        || !lists.containsKey(messageType)) {
+                    return;
                 }
-            }
+
+                synchronized (lists) {
+                    for (WeakActionAndToken item : lists.get(messageType)) {
+                        WeakAction<T> weakActionCasted = (WeakAction<T>) item.getAction();
+
+                        if (weakActionCasted != null
+                                && recipient == weakActionCasted.getTarget()
+                                && (action == null
+                                || action == weakActionCasted.getAction1())
+                                && (token == null
+                                || token.equals(item.getToken()))) {
+                            item.getAction().markForDeletion();
+                        }
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     private static void unregisterFromLists(
@@ -415,29 +451,37 @@ public class Messenger {
             Object token,
             Action0 action,
             HashMap<Type, List<WeakActionAndToken>> lists) {
-        Type messageType = NotMsgType.class;
+        try {
+            Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
+                Type messageType = NotMsgType.class;
 
-        if (recipient == null
-                || lists == null
-                || lists.size() == 0
-                || !lists.containsKey(messageType)) {
-            return;
-        }
-
-        synchronized (lists) {
-            for (WeakActionAndToken item : lists.get(messageType)) {
-                WeakAction weakActionCasted = item.getAction();
-
-                if (weakActionCasted != null
-                        && recipient == weakActionCasted.getTarget()
-                        && (action == null
-                        || action == weakActionCasted.getAction())
-                        && (token == null
-                        || token.equals(item.getToken()))) {
-                    item.getAction().markForDeletion();
+                if (recipient == null
+                        || lists == null
+                        || lists.size() == 0
+                        || !lists.containsKey(messageType)) {
+                    return;
                 }
-            }
+
+                synchronized (lists) {
+                    for (WeakActionAndToken item : lists.get(messageType)) {
+                        WeakAction weakActionCasted = item.getAction();
+
+                        if (weakActionCasted != null
+                                && recipient == weakActionCasted.getTarget()
+                                && (action == null
+                                || action == weakActionCasted.getAction())
+                                && (token == null
+                                || token.equals(item.getToken()))) {
+                            item.getAction().markForDeletion();
+                        }
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     private static boolean classImplements(Type instanceType, Type interfaceType) {
@@ -459,20 +503,32 @@ public class Messenger {
         if (lists == null) {
             return;
         }
-        for (Map.Entry<Type, List<WeakActionAndToken>> key : lists.entrySet()) {
-            List<WeakActionAndToken> itemList = lists.get(key);
-            if (itemList != null) {
-                for (WeakActionAndToken item : itemList) {
-                    if (item.getAction() == null
-                            || !item.getAction().isLive()) {
-                        itemList.remove(item);
+        try {
+            Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
+                Iterator<Map.Entry<Type, List<WeakActionAndToken>>> iterator = lists.entrySet().iterator();
+                while (iterator.hasNext()) {
+                    Map.Entry<Type, List<WeakActionAndToken>> entry = iterator.next();
+                    List<WeakActionAndToken> itemList = lists.get(entry.getKey());
+                    if (itemList != null) {
+                        Iterator<WeakActionAndToken> items = itemList.iterator();
+                        while (items.hasNext()) {
+                            WeakActionAndToken item = items.next();
+                            if (item.getAction() == null
+                                    || !item.getAction().isLive()) {
+                                items.remove();
+                            }
+                        }
+                        if (itemList.size() == 0) {
+                            iterator.remove();
+                        }
                     }
                 }
-                if (itemList.size() == 0) {
-                    lists.remove(key);
-                }
-            }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     private void sendToTargetOrType(Type messageTargetType, Object token) {
@@ -510,19 +566,22 @@ public class Messenger {
         if (list != null) {
             ArrayList<WeakActionAndToken> listClone = new ArrayList<>();
             listClone.addAll(list);
-
-            for (WeakActionAndToken item : listClone) {
-                WeakAction executeAction = item.getAction();
-                if (executeAction != null
-                        && item.getAction().isLive()
-                        && item.getAction().getTarget() != null
-                        && (messageTargetType == null
-                        || item.getAction().getTarget().getClass() == messageTargetType
-                        || classImplements(item.getAction().getTarget().getClass(), messageTargetType))
-                        && ((item.getToken() == null && token == null)
-                        || item.getToken() != null && item.getToken().equals(token))) {
-                    executeAction.execute();
+            try {
+                for (WeakActionAndToken item : listClone) {
+                    WeakAction executeAction = item.getAction();
+                    if (executeAction != null
+                            && item.getAction().isLive()
+                            && item.getAction().getTarget() != null
+                            && (messageTargetType == null
+                            || item.getAction().getTarget().getClass() == messageTargetType
+                            || classImplements(item.getAction().getTarget().getClass(), messageTargetType))
+                            && ((item.getToken() == null && token == null)
+                            || item.getToken() != null && item.getToken().equals(token))) {
+                        executeAction.execute();
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -555,6 +614,36 @@ public class Messenger {
         }
 
         cleanup();
+    }
+
+    public boolean isRegisterMessenger(Object recipient) {
+        return isRegister(recipient, recipientsStrictAction) || isRegister(recipient, recipientsOfSubclassesAction);
+    }
+
+    private static boolean isRegister(Object recipient, HashMap<Type, List<WeakActionAndToken>> hashMap) {
+        try {
+            if (recipient == null
+                    || hashMap == null
+                    || hashMap.size() == 0) {
+                return false;
+            }
+            synchronized (hashMap) {
+                for (List<WeakActionAndToken> list : hashMap.values()) {
+                    for (WeakActionAndToken item : list) {
+                        WeakAction weakAction = item.getAction();
+
+                        if (weakAction != null
+                                && recipient.getClass().getName().equals(weakAction.getTarget().getClass().getName())) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            cleanupList(hashMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private class WeakActionAndToken {

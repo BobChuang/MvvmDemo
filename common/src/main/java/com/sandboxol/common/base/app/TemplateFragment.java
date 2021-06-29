@@ -5,11 +5,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sandboxol.common.R;
+import com.sandboxol.common.base.viewmodel.ViewModel;
 
 /**
  * Created by Jimmy on 2016/10/19 0019.
  */
-public abstract class TemplateFragment<D extends ViewDataBinding> extends BaseFragment<D> {
+public abstract class TemplateFragment<VM extends ViewModel, D extends ViewDataBinding> extends BaseFragment<VM, D> {
 
     public void onLeftButtonClick(View v) {
         if (getActivity() != null) {
@@ -33,5 +34,7 @@ public abstract class TemplateFragment<D extends ViewDataBinding> extends BaseFr
             activity.findViewById(R.id.ibTemplateLeft).setVisibility(View.GONE);
         }
     }
+    public void onBackPressed(){
 
+    }
 }

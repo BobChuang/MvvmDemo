@@ -6,4 +6,7 @@ package com.sandboxol.common.config;
 public interface PageConfig {
     int DEFAULT_PAGE = 0;
     int DEFAULT_SIZE = 10;
+
+    String ORDER_DSC = "dsc";
+    String ORDER_ASC = "asc";
 }

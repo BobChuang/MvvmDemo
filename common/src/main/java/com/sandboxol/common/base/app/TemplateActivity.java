@@ -1,13 +1,16 @@
 package com.sandboxol.common.base.app;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.sandboxol.common.R;
+import com.sandboxol.common.base.viewmodel.ViewModel;
 import com.sandboxol.common.databinding.ActivityTemplateBinding;
 import com.sandboxol.common.utils.BeanUtils;
 
@@ -15,7 +18,7 @@ import com.sandboxol.common.utils.BeanUtils;
 /**
  * Created by Jimmy on 2016/8/26 0026.
  */
-public class TemplateActivity extends BaseActivity implements View.OnClickListener {
+public class TemplateActivity extends BaseActivity<ViewModel, ActivityTemplateBinding> implements View.OnClickListener {
 
     public static String NAME = "template.fragment.name";
     public static String TITLE = "template.title";
@@ -25,13 +28,27 @@ public class TemplateActivity extends BaseActivity implements View.OnClickListen
     public static String RIGHT_TEXT = "template.right.text";
 
     private Fragment fragment;
-    private ActivityTemplateBinding binding;
 
     @Override
-    protected void bindView() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_template);
+    protected int getLayoutId() {
+        return R.layout.activity_template;
+    }
+
+    @Override
+    protected ViewModel getViewModel() {
+        return new ViewModel() {
+        };
+    }
+
+    @Override
+    protected void bindViewModel(ActivityTemplateBinding binding, ViewModel viewModel) {
         initToolBar();
         initFragment();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
     }
 
     private void initFragment() {
@@ -44,13 +61,12 @@ public class TemplateActivity extends BaseActivity implements View.OnClickListen
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.setTransition(FragmentTransaction.TRANSIT_NONE);
             ft.replace(R.id.flTemplateContainer, fragment);
-            ft.commit();
+            ft.commitAllowingStateLoss();
         }
     }
 
     private void initToolBar() {
         binding.tbTemplateBar.setTitle("");
-        setSupportActionBar(binding.tbTemplateBar);
         binding.tvTemplateTitle.setText(getIntent().getStringExtra(TITLE));
         int leftResId = getIntent().getIntExtra(LEFT_RESOURCE_ID, -1);
         binding.ibTemplateLeft.setImageResource(leftResId == -1 ? R.drawable.btn_back : leftResId);
@@ -95,4 +111,17 @@ public class TemplateActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (fragment != null && fragment instanceof TemplateFragment) {
+            ((TemplateFragment) fragment).onBackPressed();
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//竖屏
+    }
 }

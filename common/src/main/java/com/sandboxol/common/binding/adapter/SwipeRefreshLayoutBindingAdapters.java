@@ -23,5 +23,4 @@ public class SwipeRefreshLayoutBindingAdapters {
     public static void setRefreshing(SwipeRefreshLayout swipeRefreshLayout, boolean isRefreshing) {
         swipeRefreshLayout.setRefreshing(isRefreshing);
     }
-
 }

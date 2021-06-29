@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion android_compile_version
@@ -10,6 +9,8 @@ android {
         targetSdkVersion android_target_sdk_version
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+        flavorDimensions "1"
     }
 
     dexOptions {
@@ -34,7 +35,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':common')
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':common')
 }
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="00"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_delimiter_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_delimiter_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text=":"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_second"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_first"
+        app:layout_constraintTop_toTopOf="@+id/tv_first" />
+
+    <TextView
+        android:id="@+id/tv_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="00"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_delimiter_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_delimiter_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_first" />
+
+    <TextView
+        android:id="@+id/tv_delimiter_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text=":"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_third"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_second"
+        app:layout_constraintTop_toTopOf="@+id/tv_first" />
+
+    <TextView
+        android:id="@+id/tv_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="00"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_delimiter_2"
+        app:layout_constraintTop_toTopOf="@+id/tv_first" />
+</android.support.constraint.ConstraintLayout>

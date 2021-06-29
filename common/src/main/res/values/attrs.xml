@@ -1,109 +1,225 @@
 <resources>
 
-    <attr name="requestFocus" format="boolean"/>
-    <attr name="itemView" format="reference"/>
-    <attr name="items" format="reference"/>
-    <attr name="adapter" format="reference"/>
-    <attr name="onScrollChangeCommand" format="reference"/>
-    <attr name="onScrollStateChangedCommand" format="reference"/>
-    <attr name="uri" format="string"/>
-    <attr name="onTouchCommand" format="reference"/>
-    <attr name="clickCommand" format="reference"/>
-    <attr name="onCheckCommand" format="reference"/>
-    <attr name="onFocusChangeCommand" format="reference"/>
-    <attr name="model" format="reference"/>
-    <attr name="layoutFactory" format="reference"/>
+    <attr name="requestFocus" format="boolean" />
+    <attr name="itemBinding" format="reference" />
+    <attr name="items" format="reference" />
+    <attr name="limit" format="integer" />
+    <attr name="adapter" format="reference" />
+    <attr name="onScrollChangeCommand" format="reference" />
+    <attr name="onScrollStateChangedCommand" format="reference" />
+    <attr name="uri" format="string" />
+    <attr name="onTouchCommand" format="reference" />
+    <attr name="onClickCommand" format="reference" />
+    <attr name="onCheckCommand" format="reference" />
+    <attr name="checkId" format="integer" />
+    <attr name="onFocusChangeCommand" format="reference" />
+    <attr name="model" format="reference" />
+    <attr name="layoutFactory" format="reference" />
+    <attr name="listLayout" format="reference" />
+    <attr name="isReplace" format="boolean" />
+    <attr name="errorText" format="string" />
+    <attr name="isLoading" format="boolean" />
+    <attr name="isSuccess" format="boolean" />
+    <attr name="isVisible" format="boolean" />
+    <attr name="position" format="integer" />
+    <attr name="anim" format="boolean" />
+    <attr name="child" format="reference" />
+    <attr name="onShowAnimate" format="integer" />
 
     <declare-styleable name="View">
-        <attr name="clickCommand"/>
-        <attr name="onFocusChangeCommand"/>
-        <attr name="onTouchCommand"/>
+        <attr name="onClickCommand" />
+        <attr name="onFocusChangeCommand" />
+        <attr name="onTouchCommand" />
+        <attr name="onShowAnimate" />
+        <attr name="isDoLastAnimate" format="boolean" />
+        <attr name="afterAnimate" format="integer" />
+        <attr name="firstAnimate" format="integer" />
+        <attr name="isDoFirstAnimate" format="boolean" />
+        <attr name="animateDelayTime" format="integer" />
+        <attr name="isQuicklyClickCommand" format="boolean" />
+        <attr name="isEnable" format="boolean" />
+        <attr name="cornerRadius" format="integer"/>
+        <attr name="bgColor" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="AdapterView">
-        <attr name="itemView"/>
-        <attr name="items"/>
-        <attr name="adapter"/>
-        <attr name="dropDownItemView" format="reference"/>
-        <attr name="itemIds" format="reference"/>
-        <attr name="itemIsEnabled" format="reference"/>
-        <attr name="onScrollStateChangedCommand"/>
-        <attr name="onScrollChangeCommand"/>
-        <attr name="onLoadMoreCommand" format="reference"/>
+        <attr name="items" />
+        <attr name="adapter" />
+        <attr name="dropDownItemView" format="reference" />
+        <attr name="itemIds" format="reference" />
+        <attr name="itemIsEnabled" format="reference" />
+        <attr name="onScrollStateChangedCommand" />
+        <attr name="onScrollChangeCommand" />
+        <attr name="onLoadMoreCommand" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="TextView">
-        <attr name="clickCommand"/>
-        <attr name="requestFocus"/>
-        <attr name="beforeTextChangedCommand" format="reference"/>
-        <attr name="onTextChangedCommand" format="reference"/>
-        <attr name="afterTextChangedCommand" format="reference"/>
+        <attr name="onClickCommand" />
+        <attr name="requestFocus" />
+        <attr name="beforeTextChangedCommand" format="reference" />
+        <attr name="onTextChangedCommand" format="reference" />
+        <attr name="afterTextChangedCommand" format="reference" />
+        <attr name="centerLine" format="boolean" />
+        <attr name="colorText" format="string" />
+        <attr name="colorSpan" format="integer" />
+        <attr name="textStart" format="integer" />
+        <attr name="textEnd" format="integer" />
+        <attr name="isSelect" format="boolean" />
+        <attr name="tvEnable" format="boolean" />
+        <attr name="bgText" format="integer" />
+        <attr name="htmlText" format="string" />
+        <attr name="leftDrawable" format="integer"/>
+        <attr name="bgRadius" format="integer"/>
+        <attr name="bgColorStr" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="ImageView">
-        <attr name="clickCommand"/>
-        <attr name="uri"/>
-        <attr name="placeImageRes" format="reference|color"/>
-        <attr name="failedImageRes" format="reference|color"/>
-        <attr name="onSuccessCommand" format="reference"/>
+        <attr name="onClickCommand" />
+        <attr name="uri" />
+        <attr name="placeImageRes" format="reference|color" />
+        <attr name="failedImageRes" format="reference|color" />
+        <attr name="onSuccessCommand" format="reference" />
+        <attr name="imageSrc" format="reference" />
+        <attr name="enable" format="boolean" />
+        <attr name="isRunning" format="boolean" />
+        <attr name="animType" format="string" />
+        <attr name="gif" format="integer" />
+        <attr name="gifUri" format="string" />
+        <attr name="gifPlaceImageRes" format="integer" />
+        <attr name="gifFailedImageRes" format="integer" />
+        <attr name="isStartAnim" format="boolean" />
+        <attr name="isStartRoundAnim" format="boolean" />
+        <attr name="isStartAnimByXml" format="integer" />
+        <attr name="leftTop" format="boolean" />
+        <attr name="rightTop" format="boolean" />
+        <attr name="leftBottom" format="boolean" />
+        <attr name="rightBottom" format="boolean" />
+        <attr name="ivRadius" format="float" />
+        <attr name="assetsImage" format="string" />
+        <attr name="drawable" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="ViewGroup">
-        <attr name="clickCommand"/>
-        <attr name="itemView"/>
-        <attr name="viewModels" format="reference"/>
+        <attr name="onClickCommand" />
+        <attr name="itemBinding" />
+        <attr name="child" />
+        <attr name="viewModels" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="RecyclerView" parent="AdapterView">
-        <attr name="onLoadMoreCommand"/>
+        <attr name="onLoadMoreCommand" />
+        <attr name="dividerColor" format="integer" />
+        <attr name="dividerHeight" format="integer" />
+        <attr name="dividerMarginLeft" format="integer" />
+        <attr name="dividerMarginRight" format="integer" />
+        <attr name="layoutManager" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="RadioGroup">
         <attr name="onCheckCommand" />
     </declare-styleable>
 
+    <declare-styleable name="CheckBox">
+        <attr name="onCheckCommand" />
+        <attr name="isPressed" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="ListView" parent="AdapterView">
-        <attr name="onItemClickCommand" format="reference"/>
-        <attr name="onLoadMoreCommand"/>
+        <attr name="onItemClickCommand" format="reference" />
+        <attr name="onLoadMoreCommand" />
     </declare-styleable>
 
     <declare-styleable name="ViewPager">
-        <attr name="itemView"/>
-        <attr name="items"/>
-        <attr name="adapter"/>
-        <attr name="pageTitles" format="reference"/>
-        <attr name="onPageScrolledCommand" format="reference"/>
-        <attr name="onPageSelectedCommand" format="reference"/>
-        <attr name="onPageScrollStateChangedCommand" format="reference"/>
+        <attr name="itemBinding" />
+        <attr name="items" />
+        <attr name="limit" />
+        <attr name="adapter" />
+        <attr name="position" />
+        <attr name="anim" />
+        <attr name="pageTitles" format="reference" />
+        <attr name="onPageScrolledCommand" format="reference" />
+        <attr name="onPageSelectedCommand" format="reference" />
+        <attr name="onPageScrollStateChangedCommand" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="NestedScrollView">
-        <attr name="onScrollChangeCommand"/>
+        <attr name="onScrollChangeCommand" />
     </declare-styleable>
 
     <declare-styleable name="ScrollView">
-        <attr name="onScrollChangeCommand"/>
+        <attr name="onScrollChangeCommand" />
     </declare-styleable>
 
     <declare-styleable name="SwipeRefreshLayout">
-        <attr name="onRefreshCommand" format="reference"/>
-        <attr name="setRefreshing" format="boolean"/>
+        <attr name="onRefreshCommand" format="reference" />
+        <attr name="setRefreshing" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="WebView">
-        <attr name="render" format="string"/>
+        <attr name="render" format="string" />
     </declare-styleable>
 
     <declare-styleable name="DataRecyclerView">
-        <attr name="model"/>
-        <attr name="layoutFactory"/>
+        <attr name="model" />
+        <attr name="layoutFactory" />
+        <attr name="listLayout" />
+        <attr name="isReplace" />
+        <attr name="closeNestedScrollingEnabled" format="boolean" />
+        <attr name="onLastVisibleCommand" format="reference" />
+        <attr name="cacheSize" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="PageRecyclerView">
-        <attr name="model"/>
-        <attr name="layoutFactory"/>
-        <attr name="page" format="integer"/>
-        <attr name="size" format="integer"/>
+        <attr name="model" />
+        <attr name="layoutFactory" />
+        <attr name="listLayout" />
+        <attr name="isReplace" />
+        <attr name="page" format="integer" />
+        <attr name="size" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="PageLoadingView">
+        <attr name="background_color" format="color" />
+        <attr name="errorText" />
+        <attr name="isLoading" />
+        <attr name="isSuccess" />
+        <attr name="isVisible" />
+        <attr name="isShowFailed" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="RelativeLayout">
+        <attr name="onLongClickCommand" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" format="dimension" />
+        <attr name="roundType">
+            <enum name="circle" value="0" />
+            <enum name="round" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LinearLayout">
+        <attr name="indicatorDrawableSelected" format="integer" />
+        <attr name="indicatorDrawableUnselected" format="integer" />
+        <attr name="indicatorQuantity" format="integer" />
+        <attr name="indicatorPosition" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="StrokeTextView">
+        <attr name="strokeColor" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="gradientOrientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TimeCountDownView">
+        <attr name="text_size" format="integer" />
+        <attr name="text_color" format="string" />
+        <attr name="delimiter_1" format="string" />
+        <attr name="delimiter_2" format="string" />
+        <attr name="isShowUnit" format="boolean" />
+    </declare-styleable>
 </resources>

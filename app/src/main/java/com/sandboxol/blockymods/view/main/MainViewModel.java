@@ -8,14 +8,14 @@ import com.sandboxol.blockymods.view.main.game.GameFragment;
 import com.sandboxol.blockymods.view.main.index.IndexFragment;
 import com.sandboxol.blockymods.view.main.me.MeFragment;
 import com.sandboxol.common.base.app.BaseFragment;
+import com.sandboxol.common.base.viewmodel.ViewModel;
 import com.sandboxol.common.binding.adapter.RadioGroupBindingAdapters;
-import com.sandboxol.common.binding.viewmodel.ViewModel;
 import com.sandboxol.common.command.ReplyCommand;
 
 /**
  * Created by Jimmy on 2017/10/13 0013.
  */
-public class MainViewModel implements ViewModel {
+public class MainViewModel extends ViewModel {
 
     private MainActivity activity;
 

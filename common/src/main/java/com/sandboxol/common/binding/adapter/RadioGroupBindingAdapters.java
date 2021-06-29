@@ -1,6 +1,7 @@
 package com.sandboxol.common.binding.adapter;
 
 import android.databinding.BindingAdapter;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.sandboxol.common.command.ReplyCommand;
@@ -10,20 +11,28 @@ import com.sandboxol.common.command.ReplyCommand;
  */
 public class RadioGroupBindingAdapters {
 
-    @BindingAdapter(value = {"onCheckCommand"}, requireAll = false)
-    public static void onCheckedChangeListener(RadioGroup radioGroup, ReplyCommand<CheckedDataWrapper> onCheckCommand) {
+    @BindingAdapter(value = {"onCheckCommand", "checkId"}, requireAll = false)
+    public static void onCheckedChangeListener(RadioGroup radioGroup, ReplyCommand<CheckedDataWrapper> onCheckCommand, int checkId) {
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (onCheckCommand != null) {
-                onCheckCommand.execute(new CheckedDataWrapper(checkedId));
+                onCheckCommand.execute(new CheckedDataWrapper(group.findViewById(checkedId), checkedId));
             }
         });
+        if (checkId != 0) {
+            RadioButton radioButton = radioGroup.findViewById(checkId);
+            if (radioButton!=null){
+                radioButton.setChecked(true);
+            }
+        }
     }
 
     public static class CheckedDataWrapper {
 
+        private RadioButton checkButton;
         private int checkedId;
 
-        public CheckedDataWrapper(int checkedId) {
+        public CheckedDataWrapper(RadioButton checkButton, int checkedId) {
+            this.checkButton = checkButton;
             this.checkedId = checkedId;
         }
 
@@ -31,8 +40,8 @@ public class RadioGroupBindingAdapters {
             return checkedId;
         }
 
-        public void setCheckedId(int checkedId) {
-            this.checkedId = checkedId;
+        public RadioButton getCheckButton() {
+            return checkButton;
         }
     }
 
