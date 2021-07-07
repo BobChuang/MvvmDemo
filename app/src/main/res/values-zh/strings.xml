@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Ezil</string>
+    <string name="home">主页</string>
+    <string name="income">预估</string>
+    <string name="hash_rate">算力</string>
+    <string name="current">实时算力</string>
+    <string name="average">30m平均算力</string>
+    <string name="average_24">24h平均算力</string>
+    <string name="reported">本地算力</string>
+    <string name="estimated_coin_mining">预估挖矿</string>
+    <string name="daily_mining">每日挖矿</string>
+    <string name="weekly_mining">每周挖矿</string>
+    <string name="monthly_mining">每月挖矿</string>
+    <string name="estimated_money">预估收益</string>
+    <string name="daily_money">每日收益</string>
+    <string name="weekly_money">每周收益</string>
+    <string name="monthly_money">每月收益</string>
+    <string name="balance">当前账号价值</string>
+    <string name="coin">已挖到的币</string>
+    <string name="coin_price">当前币价</string>
+    <string name="total_revenue">总收益</string>
+    <string name="min_payout">最小支付额</string>
+    <string name="remaining_time">剩余提现时间</string>
+</resources>

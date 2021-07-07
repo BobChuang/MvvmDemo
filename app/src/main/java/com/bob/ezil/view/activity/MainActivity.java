@@ -2,10 +2,10 @@ package com.bob.ezil.view.activity;
 
 import android.support.v4.app.FragmentTransaction;
 
-import com.bob.ezil.R;
-import com.bob.ezil.databinding.ActivityMainBinding;
 import com.bob.common.base.app.BaseActivity;
 import com.bob.common.base.app.BaseFragment;
+import com.bob.ezil.R;
+import com.bob.ezil.databinding.ActivityMainBinding;
 
 /**
  * Created by Bob on 2021/06/30.

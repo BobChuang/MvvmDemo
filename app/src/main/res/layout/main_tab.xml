@@ -27,7 +27,7 @@
             android:background="#999999"
             android:button="@null"
             android:gravity="center"
-            android:text="INDEX"/>
+            android:text="@string/home"/>
 
         <RadioButton
             android:id="@+id/rb_2"
@@ -37,7 +37,7 @@
             android:background="#dddddd"
             android:button="@null"
             android:gravity="center"
-            android:text="GAME"/>
+            android:text="@string/income"/>
 
         <RadioButton
             android:id="@+id/rb_3"

@@ -92,6 +92,7 @@ ext {
             'logutils':"com.apkfuns.logutils:library:1.7.5",
             'logutils-no-op':'com.apkfuns.logutils:logutils-no-op:1.7.5',
             'google-play-pay-billing'                   :'com.android.billingclient:billing:2.0.3',
+            'SmartRefreshLayout'                   : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0',
             'blockcanary-debug' : 'com.github.markzhai:blockcanary-android:1.5.0',
             'blockcanary-release' : 'com.github.markzhai:blockcanary-no-op:1.5.0' //空包
     ]

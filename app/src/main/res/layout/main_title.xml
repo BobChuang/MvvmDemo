@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="MainViewModel"
-            type="com.bob.ezil.view.activity.MainViewModel"/>
+            type="com.bob.ezil.view.activity.MainViewModel" />
 
         <import type="android.view.View" />
 
@@ -35,8 +34,8 @@
                 android:layout_height="40dp"
                 android:background="@null"
                 android:paddingRight="8dp"
-                android:visibility="@{MainViewModel.isShowLeftButton ? View.VISIBLE : View.INVISIBLE}"
-                android:src="@drawable/btn_back"/>
+                android:src="@drawable/btn_back"
+                android:visibility="@{MainViewModel.isShowLeftButton ? View.VISIBLE : View.INVISIBLE}" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,9 +46,9 @@
                 android:lines="1"
                 android:text="@{MainViewModel.title}"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="right"
@@ -57,9 +56,10 @@
                 android:gravity="center"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
-                android:text="OK"
+                android:text="Refresh"
                 android:textSize="15sp"
-                android:visibility="@{MainViewModel.isShowRightButton ? View.VISIBLE : View.INVISIBLE}"/>
+                android:visibility="@{MainViewModel.isShowRightButton ? View.VISIBLE : View.INVISIBLE}"
+                bind:onClickCommand="@{MainViewModel.onRightClick}" />
 
         </android.support.v7.widget.Toolbar>
 

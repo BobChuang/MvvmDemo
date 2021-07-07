@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Ezil</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="income" translatable="false">Income</string>
+    <string name="hash_rate" translatable="false">HASHRATE</string>
+    <string name="current" translatable="false">Current</string>
+    <string name="average" translatable="false">30m Average</string>
+    <string name="average_24" translatable="false">24h Average</string>
+    <string name="reported" translatable="false">Reported</string>
+    <string name="estimated_coin_mining" translatable="false">Estimated Coin Mining</string>
+    <string name="daily_mining" translatable="false">Daily Mining</string>
+    <string name="weekly_mining" translatable="false">Weekly Mining</string>
+    <string name="monthly_mining" translatable="false">Monthly Mining</string>
+    <string name="estimated_money" translatable="false">Estimated Money</string>
+    <string name="daily_money" translatable="false">Daily Money</string>
+    <string name="weekly_money" translatable="false">Weekly Money</string>
+    <string name="monthly_money" translatable="false">Monthly Money</string>
+    <string name="balance" translatable="false">Balance</string>
+    <string name="coin" translatable="false">Coin</string>
+    <string name="coin_price" translatable="false">Coin Price</string>
+    <string name="total_revenue" translatable="false">Total Revenue</string>
+    <string name="min_payout" translatable="false">Min Payout</string>
+    <string name="remaining_time" translatable="false">Remaining Time</string>
 </resources>
