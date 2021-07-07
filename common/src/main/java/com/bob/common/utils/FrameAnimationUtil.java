@@ -2,7 +2,7 @@ package com.bob.common.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 import android.widget.ImageView;
 
 public class FrameAnimationUtil {

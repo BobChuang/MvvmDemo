@@ -1,6 +1,6 @@
 package com.bob.ezil.view.activity;
 
-import android.databinding.ObservableField;
+import androidx.databinding.ObservableField;
 
 import com.bob.common.base.app.TemplateFragment;
 import com.bob.common.base.viewmodel.ViewModel;

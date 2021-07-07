@@ -2,12 +2,12 @@ package com.bob.common.base.app;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 import android.view.View;
 
 import com.bob.common.base.rx.BaseRxAppCompatActivity;

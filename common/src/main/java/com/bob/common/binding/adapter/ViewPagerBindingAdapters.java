@@ -1,7 +1,7 @@
 package com.bob.common.binding.adapter;
 
-import android.databinding.BindingAdapter;
-import android.support.v4.view.ViewPager;
+import androidx.databinding.BindingAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bob.common.command.ReplyCommand;
 

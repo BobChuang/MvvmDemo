@@ -1,6 +1,6 @@
 package com.bob.common.base.app;
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.view.View;
 import android.widget.TextView;
 

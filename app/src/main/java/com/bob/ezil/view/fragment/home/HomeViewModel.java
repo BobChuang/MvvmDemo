@@ -1,7 +1,7 @@
 package com.bob.ezil.view.fragment.home;
 
 import android.content.Context;
-import android.databinding.ObservableField;
+import androidx.databinding.ObservableField;
 import android.util.Log;
 
 import com.bob.common.base.viewmodel.ViewModel;

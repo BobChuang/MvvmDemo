@@ -2,7 +2,7 @@ package com.bob.common.threadpoollib.executor;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.concurrent.Executor;
 

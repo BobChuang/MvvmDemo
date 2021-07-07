@@ -1,7 +1,7 @@
 package com.bob.common.binding.adapter;
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;

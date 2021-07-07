@@ -1,6 +1,6 @@
 package com.bob.ezil.view.activity;
 
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bob.common.base.app.BaseActivity;
 import com.bob.common.base.app.BaseFragment;

@@ -1,10 +1,9 @@
 package com.bob.ezil.view.fragment.game;
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 
 import com.bob.common.base.app.TemplateFragment;
 import com.bob.ezil.R;
-import com.bob.common.base.app.BaseFragment;
 import com.bob.common.base.viewmodel.ViewModel;
 
 /**

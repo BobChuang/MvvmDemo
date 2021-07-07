@@ -1,7 +1,7 @@
 package com.bob.common.base.viewmodel;
 
 import android.content.Context;
-import android.databinding.Bindable;
+import androidx.databinding.Bindable;
 
 /**
  * Created by Jimmy on 2017/9/27 0027.

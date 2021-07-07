@@ -1,6 +1,6 @@
 package com.bob.common.retrofit;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bob.common.base.app.BaseApplication;
 import com.bob.common.config.CommonMessageToken;

@@ -1,6 +1,6 @@
 package com.bob.common.binding.adapter;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
@@ -144,7 +144,7 @@ public class ViewBindingAdapters {
         }
     }
 
-    @BindingAdapter(value = {"cornerRadius", "bgColor"}, requireAll = false)
+    @BindingAdapter(value = {"appCornerRadius", "bgColor"}, requireAll = false)
     public static void setRoundBackground(View view, int radius, String color) {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setCornerRadius(radius);

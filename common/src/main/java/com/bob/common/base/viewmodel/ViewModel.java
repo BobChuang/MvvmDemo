@@ -1,6 +1,6 @@
 package com.bob.common.base.viewmodel;
 
-import android.databinding.BaseObservable;
+import androidx.databinding.BaseObservable;
 
 /**
  * Created by Jimmy on 2017/9/27 0027.

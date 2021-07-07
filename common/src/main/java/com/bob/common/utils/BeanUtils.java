@@ -1,6 +1,6 @@
 package com.bob.common.utils;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by Jimmy on 2016/8/26 0026.

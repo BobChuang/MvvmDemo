@@ -20,7 +20,7 @@ import java.util.Arrays;
 /**
  * Created by marvin on 2018/7/9 0009.
  */
-public class StrokeTextView extends android.support.v7.widget.AppCompatTextView {
+public class StrokeTextView extends androidx.appcompat.widget.AppCompatTextView {
     private static final int HORIZENTAL = 0;
     private static final int VERTICAL = 1;
 

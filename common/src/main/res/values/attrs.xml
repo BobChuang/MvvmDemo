@@ -38,7 +38,7 @@
         <attr name="animateDelayTime" format="integer" />
         <attr name="isQuicklyClickCommand" format="boolean" />
         <attr name="isEnable" format="boolean" />
-        <attr name="cornerRadius" format="integer"/>
+        <attr name="appCornerRadius" format="integer"/>
         <attr name="bgColor" format="string"/>
     </declare-styleable>
 

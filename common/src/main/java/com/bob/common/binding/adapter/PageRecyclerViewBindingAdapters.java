@@ -1,6 +1,6 @@
 package com.bob.common.binding.adapter;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 
 import com.bob.common.widget.rv.IListLayout;
 import com.bob.common.widget.rv.pagerv.PageListLayout;

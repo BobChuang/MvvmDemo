@@ -1,8 +1,8 @@
 package com.bob.common.base.viewmodel;
 
 import android.content.Context;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
 import android.text.TextUtils;
 
 import com.bob.common.R;

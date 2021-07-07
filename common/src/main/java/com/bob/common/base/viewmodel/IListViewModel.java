@@ -1,6 +1,6 @@
 package com.bob.common.base.viewmodel;
 
-import android.databinding.ObservableList;
+import androidx.databinding.ObservableList;
 
 import com.bob.common.widget.rv.msg.InsertMsg;
 import com.bob.common.widget.rv.msg.RemoveMsg;

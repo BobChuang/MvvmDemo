@@ -1,7 +1,7 @@
 package com.bob.common.binding.adapter;
 
-import android.databinding.BindingAdapter;
-import android.support.v4.widget.NestedScrollView;
+import androidx.databinding.BindingAdapter;
+import androidx.core.widget.NestedScrollView;
 import android.widget.ScrollView;
 
 import com.bob.common.command.ReplyCommand;

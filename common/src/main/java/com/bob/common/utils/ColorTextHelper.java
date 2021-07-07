@@ -1,7 +1,7 @@
 package com.bob.common.utils;
 
 import android.os.Build;
-import android.support.annotation.ColorRes;
+import androidx.annotation.ColorRes;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;

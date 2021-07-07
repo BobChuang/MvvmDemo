@@ -6,19 +6,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.CoordinatorLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark"
             android:fitsSystemWindows="true">
 
-            <android.support.design.widget.AppBarLayout
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay"
                 bind:elevation="0dp">
 
-                <android.support.v7.widget.Toolbar
+                <androidx.appcompat.widget.Toolbar
                     android:id="@+id/tbTemplateBar"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/actionBarHeight"
@@ -77,9 +77,9 @@
                         android:textColor="@android:color/white"
                         android:textSize="14sp"
                         android:visibility="visible" />
-                </android.support.v7.widget.Toolbar>
+                </androidx.appcompat.widget.Toolbar>
 
-            </android.support.design.widget.AppBarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
             <FrameLayout
                 android:id="@+id/flTemplateContainer"
@@ -90,7 +90,7 @@
 
             </FrameLayout>
 
-        </android.support.design.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

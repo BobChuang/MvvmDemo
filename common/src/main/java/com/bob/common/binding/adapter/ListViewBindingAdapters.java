@@ -1,6 +1,6 @@
 package com.bob.common.binding.adapter;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
