@@ -39,7 +39,7 @@ public class MainViewModel extends ViewModel {
             case R.id.rb_1:
                 title.set("Ezil");
                 isShowLeftButton.set(false);
-                isShowRightButton.set(true);
+                isShowRightButton.set(false);
                 replaceFragment(homeFragment);
                 break;
             case R.id.rb_2:

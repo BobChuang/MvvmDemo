@@ -1,511 +1,526 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="HomeViewModel"
+            name="ViewModel"
             type="com.bob.ezil.view.fragment.home.HomeViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
-        <LinearLayout
+        <View
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:background="@mipmap/app_bg_toolbar_shadow"
+            android:visibility="@{ViewModel.onTop ? View.GONE:View.VISIBLE}"
+            bind:layout_constraintEnd_toEndOf="parent"
+            bind:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintTop_toTopOf="parent">
 
-            <TableLayout
+            <com.bob.common.widget.ListenerTopScrollView
+                android:id="@+id/scroll_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
-                android:orientation="vertical"
-                android:showDividers="middle|beginning|end">
+                android:layout_height="wrap_content">
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#EEEEEE"
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text=" " />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@string/hash_rate" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/current" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.reported.getCurrent_hashrate()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/average" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.reported.getAverage_hashrate()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/average_24" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.coinMining.getEthHashrate()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/reported" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.reported.getReported_hashrate()}" />
-                </TableRow>
-
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@color/colorWhite"
-
-                android:orientation="vertical"
-                android:showDividers="middle|beginning|end">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#EEEEEE"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/estimated_coin_mining" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="ETH" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="ZIL" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/daily_mining" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.coinMining.eth.getDayStr()}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.coinMining.zil_eth.getDayStr()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/weekly_mining" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.coinMining.eth.getWeekStr()}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.coinMining.zil_eth.getWeekStr()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/monthly_mining" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.coinMining.eth.getMonthStr()}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.coinMining.zil_eth.getMonthStr()}" />
-                </TableRow>
-
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-
-                android:orientation="vertical"
-                android:showDividers="middle|beginning|end">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#EEEEEE"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/estimated_money" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="ETH" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="ZIL" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/daily_money" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.estimatedReward.getEthDayRewardStr}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.estimatedReward.getZilDayRewardStr}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/weekly_money" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.estimatedReward.getEthWeekRewardStr}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.estimatedReward.getZilWeekRewardStr}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/monthly_money" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.estimatedReward.getEthMonthRewardStr}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.estimatedReward.getZilMonthRewardStr}" />
-                </TableRow>
-
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-
-                android:orientation="vertical"
-                android:showDividers="middle|beginning|end">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#EEEEEE"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/balance" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="ETH" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="ZIL" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/coin" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.accountBalance.getEthStr()}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.accountBalance.getZilStr()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/coin_price" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.estimatedReward.getEthCoinPriceStr()}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dp"
-                        android:text="@{HomeViewModel.estimatedReward.getZilCoinPriceStr()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/total_revenue" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.estimatedReward.getEthTotalRevenueStr()}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.estimatedReward.getZilTotalRevenueStr}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/min_payout" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.accountBalance.getEthMinPayoutStr()}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.accountBalance.getZilMinPayoutStr()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="horizontal"
-                    android:showDividers="middle|beginning|end">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:padding="3dp"
-                        android:text="@string/remaining_time" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.estimatedReward.getEthRemainingTimeStr}" />
-
-                    <TextView
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:padding="3dip"
-                        android:text="@{HomeViewModel.estimatedReward.getZilRemainingTimeStr}" />
-                </TableRow>
-
-            </TableLayout>
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_86"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="@dimen/dp_10">
+
+                        <LinearLayout style="@style/HashRateItemStyle">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTitleTextStyle"
+                                android:text="@string/current" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTextStyle"
+                                android:text="@{ViewModel.reported.getCurrent_hashrate()  == null ? `0` : ViewModel.reported.getCurrent_hashrate()}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateTypeTextStyle"
+                                android:text="@{ViewModel.reported.getCurrent_hashrate() == null ? `MH/s` : ViewModel.reported.getCurrentHashRateType}" />
+
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/HashRateItemStyle">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTitleTextStyle"
+                                android:text="@string/average" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTextStyle"
+                                android:text="@{ViewModel.reported.getAverage_hashrate()  == null ? `0` : ViewModel.reported.getAverage_hashrate()}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateTypeTextStyle"
+                                android:text="@{ViewModel.reported.getAverage_hashrate() == null ? `MH/s` : ViewModel.reported.getAverageHashRateType}" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_86"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="@dimen/dp_10">
+
+                        <LinearLayout style="@style/HashRateItemStyle">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTitleTextStyle"
+                                android:text="@string/reported" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTextStyle"
+                                android:text="@{ViewModel.reported.getReported_hashrate()  == null ? `0` : ViewModel.reported.getReported_hashrate()}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateTypeTextStyle"
+                                android:text="@{ViewModel.reported.getReported_hashrate() == null ? `MH/s` : ViewModel.reported.getReportedHashRateType}" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/HashRateItemStyle">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTitleTextStyle"
+                                android:text="@string/average_24" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateItemTextStyle"
+                                android:text="@{ViewModel.coinMining.getEthHashrate()  == null ? `0` : ViewModel.coinMining.getEthHashrate()}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/HashRateTypeTextStyle"
+                                android:text="@{ViewModel.coinMining.getEthHashrate() == null ? `MH/s` : ViewModel.coinMining.getEthHashRateType}" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:background="@color/colorWhite"
+
+                        android:orientation="vertical"
+                        android:showDividers="middle|beginning|end">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#EEEEEE"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/estimated_coin_mining" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="ETH" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="ZIL" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/daily_mining" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.coinMining.eth.getDayStr()}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.coinMining.zil_eth.getDayStr()}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/weekly_mining" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.coinMining.eth.getWeekStr()}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.coinMining.zil_eth.getWeekStr()}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/monthly_mining" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.coinMining.eth.getMonthStr()}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.coinMining.zil_eth.getMonthStr()}" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+
+                        android:orientation="vertical"
+                        android:showDividers="middle|beginning|end">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#EEEEEE"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/estimated_money" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="ETH" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="ZIL" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/daily_money" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.estimatedReward.getEthDayRewardStr}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.estimatedReward.getZilDayRewardStr}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/weekly_money" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.estimatedReward.getEthWeekRewardStr}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.estimatedReward.getZilWeekRewardStr}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/monthly_money" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.estimatedReward.getEthMonthRewardStr}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.estimatedReward.getZilMonthRewardStr}" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+
+                        android:orientation="vertical"
+                        android:showDividers="middle|beginning|end">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#EEEEEE"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/balance" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="ETH" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="ZIL" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/coin" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.accountBalance.getEthStr()}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.accountBalance.getZilStr()}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/coin_price" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.estimatedReward.getEthCoinPriceStr()}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dp"
+                                android:text="@{ViewModel.estimatedReward.getZilCoinPriceStr()}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/total_revenue" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.estimatedReward.getEthTotalRevenueStr()}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.estimatedReward.getZilTotalRevenueStr}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/min_payout" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.accountBalance.getEthMinPayoutStr()}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.accountBalance.getZilMinPayoutStr()}" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal"
+                            android:showDividers="middle|beginning|end">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:padding="3dp"
+                                android:text="@string/remaining_time" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.estimatedReward.getEthRemainingTimeStr}" />
+
+                            <TextView
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:padding="3dip"
+                                android:text="@{ViewModel.estimatedReward.getZilRemainingTimeStr}" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                </LinearLayout>
+
+            </com.bob.common.widget.ListenerTopScrollView>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

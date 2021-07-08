@@ -16,11 +16,11 @@ public class HomeFragment extends TemplateFragment<HomeViewModel, FragmentHomeBi
 
     @Override
     protected HomeViewModel getViewModel() {
-        return new HomeViewModel(context);
+        return new HomeViewModel(context, binding);
     }
 
     @Override
     protected void bindViewModel(FragmentHomeBinding binding, HomeViewModel viewModel) {
-        binding.setHomeViewModel(viewModel);
+        binding.setViewModel(viewModel);
     }
 }

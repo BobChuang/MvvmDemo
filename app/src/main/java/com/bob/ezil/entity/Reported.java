@@ -50,7 +50,7 @@ public class Reported {
 
     @SuppressLint("DefaultLocale")
     public String getCurrent_hashrate() {
-        return String.format("%.3f", Double.parseDouble(String.valueOf(current_hashrate)) / 1000000) + "MH/S";
+        return String.format("%.3f", Double.parseDouble(String.valueOf(current_hashrate)) / 1000000);
     }
 
     public void setCurrent_hashrate(long current_hashrate) {
@@ -59,7 +59,7 @@ public class Reported {
 
     @SuppressLint("DefaultLocale")
     public String getAverage_hashrate() {
-        return String.format("%.3f", Double.parseDouble(String.valueOf(average_hashrate)) / 1000000) + "MH/S";
+        return String.format("%.3f", Double.parseDouble(String.valueOf(average_hashrate)) / 1000000);
     }
 
     public void setAverage_hashrate(long average_hashrate) {
@@ -80,10 +80,40 @@ public class Reported {
 
     @SuppressLint("DefaultLocale")
     public String getReported_hashrate() {
-        return String.format("%.3f", Double.parseDouble(String.valueOf(reported_hashrate)) / 1000000) + "MH/S";
+        return String.format("%.3f", Double.parseDouble(String.valueOf(reported_hashrate)) / 1000000);
     }
 
     public void setReported_hashrate(long reported_hashrate) {
         this.reported_hashrate = reported_hashrate;
+    }
+
+    public String getCurrentHashRateType() {
+        if (current_hashrate < 1000000000L) {
+            return "MH/s";
+        } else if (current_hashrate < 1000000000000L) {
+            return "GH/s";
+        } else {
+            return "TH/s";
+        }
+    }
+
+    public String getAverageHashRateType() {
+        if (average_hashrate < 1000000000L) {
+            return "MH/s";
+        } else if (average_hashrate < 1000000000000L) {
+            return "GH/s";
+        } else {
+            return "TH/s";
+        }
+    }
+
+    public String getReportedHashRateType() {
+        if (reported_hashrate < 1000000000L) {
+            return "MH/s";
+        } else if (reported_hashrate < 1000000000000L) {
+            return "GH/s";
+        } else {
+            return "TH/s";
+        }
     }
 }

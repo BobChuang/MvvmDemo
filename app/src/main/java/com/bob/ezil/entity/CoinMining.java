@@ -77,7 +77,7 @@ public class CoinMining {
 
     @SuppressLint("DefaultLocale")
     public String getEthHashrate() {
-        return String.format("%.3f", Double.parseDouble(String.valueOf(eth_hashrate)) / 1000000) + "MH/S";
+        return String.format("%.3f", Double.parseDouble(String.valueOf(eth_hashrate)) / 1000000);
     }
 
     public void setEth_hashrate(long eth_hashrate) {
@@ -90,5 +90,15 @@ public class CoinMining {
 
     public void setEtc_hashrate(long etc_hashrate) {
         this.etc_hashrate = etc_hashrate;
+    }
+
+    public String getEthHashRateType() {
+        if (eth_hashrate < 1000000000L) {
+            return "MH/s";
+        } else if (eth_hashrate < 1000000000000L) {
+            return "GH/s";
+        } else {
+            return "TH/s";
+        }
     }
 }

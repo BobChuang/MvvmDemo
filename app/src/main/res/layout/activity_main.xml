@@ -25,7 +25,6 @@
 
         <include
             layout="@layout/main_tab"
-            android:visibility="gone"
             bind:MainViewModel="@{MainViewModel}"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

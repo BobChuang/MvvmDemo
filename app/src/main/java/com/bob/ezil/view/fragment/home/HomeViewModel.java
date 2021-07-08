@@ -7,6 +7,7 @@ import android.util.Log;
 import com.bob.common.base.viewmodel.ViewModel;
 import com.bob.common.messenger.Messenger;
 import com.bob.ezil.config.MessageToken;
+import com.bob.ezil.databinding.FragmentHomeBinding;
 import com.bob.ezil.entity.AccountBalance;
 import com.bob.ezil.entity.CoinMining;
 import com.bob.ezil.entity.CoinPrice;
@@ -14,12 +15,15 @@ import com.bob.ezil.entity.EstimatedReward;
 import com.bob.ezil.entity.Reported;
 import com.google.gson.Gson;
 
+import java.util.List;
+
 /**
  * Created by BobCheung on 6/30/21 00:46
  */
 public class HomeViewModel extends ViewModel {
 
     private Context context;
+    private FragmentHomeBinding binding;
 
     public ObservableField<Reported> reported = new ObservableField<>();
     public ObservableField<CoinMining> coinMining = new ObservableField<>();
@@ -27,13 +31,66 @@ public class HomeViewModel extends ViewModel {
     public ObservableField<CoinPrice> coinPrice = new ObservableField<>();
     public ObservableField<EstimatedReward> estimatedReward = new ObservableField<>();
 
-    public HomeViewModel(Context context) {
+    /**
+     * 刷新
+     * @param context
+     */
+    public ObservableField<Boolean> onTop = new ObservableField<>(false);
+
+
+    /**
+     * 初次进入home界面的自动刷新结束标识，自动刷新阶段不能进行手动刷新，避免冲突
+     */
+    private boolean autoRefreshFinished;
+
+    public HomeViewModel(Context context, FragmentHomeBinding binding) {
         this.context = context;
+        this.binding = binding;
+        initMessenger();
         getRewards();
         getCoinMining();
         getCoinPrice();
         getAccountBalance();
-        initMessenger();
+        initView();
+    }
+
+    private void initView() {//配置smartRefresh
+        binding.srlHome.setEnableLoadMore(false);
+        binding.srlHome.setDragRate(0.5f);
+        binding.srlHome.setReboundDuration(100);
+        binding.srlHome.finishRefresh(200, false, true);
+        binding.srlHome.setOnRefreshListener(refreshLayout -> {
+            getRewards();
+            getCoinMining();
+            getCoinPrice();
+            getAccountBalance();
+            if (autoRefreshFinished) {
+//                HomeDataCacheManager.startFetchHomeDataFromServer();
+            } else {
+                binding.srlHome.finishRefresh(1000, false, true);
+            }
+        });
+        binding.scrollView.setScrollToTopListener(isOnTop -> onTop.set(isOnTop));
+//        initLayoutParams();
+        //到这一步，size大于0代表数据异步加载已经完成
+//        if (HomeDataCacheManager.getData().size() > 0) {
+//            configColumns(HomeDataCacheManager.getData());
+//            autoRefreshFinished = true;
+//        }
+        //添加监听，用于到这一步数据异步加载还未完成，和上一步是排斥关系，不会同时发生
+//        HomeDataCacheManager.setLoadListener(new HomeDataCacheManager.OnLoadDataListener() {
+//            @Override
+//            public void onLoadLocalDataFinished(List<HomeColumn> list) {
+//                configColumns(list);
+//            }
+//
+//            @Override
+//            public void onLoadRemoteDataFinished(List<HomeColumn> list) {
+//                refreshColumns(list);
+//            }
+//        });
+//        configWelfareRedPointNum();
+//        HomeDataCacheManager.addRecentListRefreshListener(this);
     }
 
     private void initMessenger() {
